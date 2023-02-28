@@ -27,7 +27,14 @@ if __name__=='__main__':
         netcat.py -y 192.168.1.108 -p 5555 
         '''))
     parser.add_argument('-c' '--comand', action='store_true',help='otwarcie powloki')
-    parser.add_argument()
-    parser.add_argument
-    parser.add_argument
-    parser.add_argument
+    parser.add_argument('-l' '--listen', action='store_true',help='nasluch')
+    parser.add_argument('-p' '--port', type=int, default=5555,help='docelowy port')
+    parser.add_argument('-t' '--target', default='192.168.1.203',help='docelowy')
+    parser.add_argument('-u','--upload',help='zaladowanie pliku')
+    args=parser.parse_args()
+    if args.listen:
+        buffer=''
+    else:
+        buffer=sys.stdin.read()
+    nc=NetCat(args,buffer.encode('utf-8'))
+    nc.run()
