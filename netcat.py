@@ -1,4 +1,4 @@
-import argparsei
+import argparse
 import socket
 import shlex
 import subprocess
@@ -14,11 +14,11 @@ def execute(cmd):
                                     strerr=subprocess.STDOUT)
     return output.decode() 
 if __name__=='__main__':
-    parser = agrprase.ArgumentParser(
+    parser = argparse.ArgumentParser(
         description='bhp tool',
-        formatter_class=argprase.RawDescriptionHelpFormatter,
-        epilog=textwrap.decent('''example:
-        netcat.py -t 192.168.1.108 -p 5555 -l -c # powloka systemu)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent('''example:
+        netcat.py -t 192.168.1.108 -p 5555 -l -c 
         netcat.py -t 192.168.1.108 -p 5555 -l -u-mytest.whatisup
         netcat.py -t 192.168.1.108 -p 5555 -l -e=\"cat /etc/passwd\"
 
@@ -32,7 +32,7 @@ if __name__=='__main__':
     parser.add_argument('-t' '--target', default='192.168.1.203',help='docelowy')
     parser.add_argument('-u','--upload',help='zaladowanie pliku')
     args=parser.parse_args()
-    if args.listen:
+    if args.l_listen:
         buffer=''
     else:
         buffer=sys.stdin.read()
