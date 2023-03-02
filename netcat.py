@@ -6,6 +6,24 @@ import sys
 import textwrap
 import threading
 
+
+class NetCat:
+    def __init__(self,args,buffer=None):
+        self.args=args
+        self.buffer=buffer
+        self.socket=setsokopt(socket.AF_INET, socket.SOCK_STREAM)
+        
+    def run(self):
+        if self.args.listen:
+            self.listen()
+        else:
+            self.send()
+
+def send(self):
+    self.socket.connect((self.args.target, self.args.port))
+
+
+
 def execute(cmd):
     cmd=cmd.strip()
     if not cmd:
